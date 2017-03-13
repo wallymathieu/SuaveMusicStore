@@ -199,6 +199,8 @@ let admin f_success =
         | _ -> UNAUTHORIZED "Not logged in"
     ))
 
+let cart = View.cart [] |> html
+
 let webPart = 
     choose [
         path Path.home >=> html View.home
@@ -213,6 +215,8 @@ let webPart =
 
         path Path.Account.logon >=> logon
         path Path.Account.logoff >=> reset
+
+        path Path.Cart.overview >=> cart
 
         pathRegex "(.*)\.(css|png|gif)" >=> Files.browseHome
         html View.notFound
